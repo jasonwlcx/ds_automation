@@ -18,7 +18,7 @@
   <Principals>
     <Principal id="Author">
       <UserId>S-1-12-1-2090410674-1191180498-1394190268-4216566975</UserId>
-      <LogonType>Password</LogonType>
+      <LogonType>S4U</LogonType>
       <RunLevel>LeastPrivilege</RunLevel>
     </Principal>
   </Principals>
