@@ -22,6 +22,10 @@ $xmlDoc.task.actions.exec.command = $env:USERPROFILE+"\Documents\ds_automation\d
 $xmlDoc.Save("$env:USERPROFILE\Documents\ds_automation\ds_automation.xml")
 
 # Prompt the user for password
-$Password = Read-Host "Please enter user password" -AsSecureString
+$Password = Read-Host "Please enter user password"
+
+# 'System.Security.SecureString'
+#$Password = ConvertFrom-SecureString -SecureString $sPassword
+
 # Schedule the task
-Register-ScheduledTask -Xml (get-content "$env:USERPROFILE\Documents\ds_automation\ds_automation.xml"| out-string) -TaskName "ds_automation" -User $env:USERDOMAIN\$env:USERNAME -Password $Password -Force
+Register-ScheduledTask -Xml (get-content "$env:USERPROFILE\Documents\ds_automation\ds_automation.xml" | out-string) -TaskName "ds_automation" -User $env:USERDOMAIN\$env:USERNAME -Password $Password -Force
