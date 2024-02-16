@@ -6,20 +6,16 @@
     <URI>\ds_automation</URI>
   </RegistrationInfo>
   <Triggers>
-    <CalendarTrigger>
-      <StartBoundary>2024-02-14T07:10:00</StartBoundary>
+    <BootTrigger>
       <ExecutionTimeLimit>PT30M</ExecutionTimeLimit>
       <Enabled>true</Enabled>
-      <ScheduleByDay>
-        <DaysInterval>1</DaysInterval>
-      </ScheduleByDay>
-    </CalendarTrigger>
+    </BootTrigger>
   </Triggers>
   <Principals>
     <Principal id="Author">
       <UserId>S-1-12-1-2090410674-1191180498-1394190268-4216566975</UserId>
-      <LogonType>S4U</LogonType>
-      <RunLevel>LeastPrivilege</RunLevel>
+      <LogonType>InteractiveToken</LogonType>
+      <RunLevel>HighestAvailable</RunLevel>
     </Principal>
   </Principals>
   <Settings>
