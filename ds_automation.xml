@@ -3,13 +3,17 @@
   <RegistrationInfo>
     <Date>2024-02-13T14:59:54.4956672</Date>
     <Author>PROVOCRAFT\jwilcox</Author>
-    <URI>\ds_automation</URI>
+    <URI>\ds_automation_bak</URI>
   </RegistrationInfo>
   <Triggers>
-    <BootTrigger>
+    <CalendarTrigger>
+      <StartBoundary>2024-02-20T00:15:00</StartBoundary>
       <ExecutionTimeLimit>PT30M</ExecutionTimeLimit>
-      <Enabled>true</Enabled>
-    </BootTrigger>
+      <Enabled>false</Enabled>
+      <ScheduleByDay>
+        <DaysInterval>1</DaysInterval>
+      </ScheduleByDay>
+    </CalendarTrigger>
   </Triggers>
   <Principals>
     <Principal id="Author">
