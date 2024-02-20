@@ -22,7 +22,7 @@ latest_release = response.json()
 
 # Extract download URLs from the release information
 exe_url = next(asset["browser_download_url"] for asset in latest_release["assets"] if asset["name"] == "ds_automation.exe")
-xml_url = next(asset["browser_download_url"] for asset in latest_release["assets"] if asset["name"] == "ds_automation.xml")
+xml_url = next('https://raw.githubusercontent.com/jasonwlcx/ds_automation/main/ds_automation.xml')
 
 # Install ds_automation into the user's documents folder
 exe_response = requests.get(exe_url)
