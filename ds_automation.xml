@@ -3,7 +3,7 @@
   <RegistrationInfo>
     <Date>2024-02-13T14:59:54.4956672</Date>
     <Author>PROVOCRAFT\jwilcox</Author>
-    <URI>\ds_automation_bak</URI>
+    <URI>\ds_automation</URI>
   </RegistrationInfo>
   <Triggers>
     <CalendarTrigger>
@@ -19,7 +19,7 @@
     <Principal id="Author">
       <UserId>S-1-12-1-2090410674-1191180498-1394190268-4216566975</UserId>
       <LogonType>InteractiveToken</LogonType>
-      <RunLevel>HighestAvailable</RunLevel>
+      <RunLevel>LeastPrivilege</RunLevel>
     </Principal>
   </Principals>
   <Settings>
