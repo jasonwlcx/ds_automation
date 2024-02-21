@@ -7,12 +7,15 @@
   </RegistrationInfo>
   <Triggers>
     <CalendarTrigger>
-      <StartBoundary>2024-02-20T00:15:00</StartBoundary>
+      <StartBoundary>2024-02-20T20:30:00</StartBoundary>
       <ExecutionTimeLimit>PT30M</ExecutionTimeLimit>
-      <Enabled>false</Enabled>
-      <ScheduleByDay>
-        <DaysInterval>1</DaysInterval>
-      </ScheduleByDay>
+      <Enabled>true</Enabled>
+      <ScheduleByWeek>
+        <DaysOfWeek>
+          <Thursday />
+        </DaysOfWeek>
+        <WeeksInterval>1</WeeksInterval>
+      </ScheduleByWeek>
     </CalendarTrigger>
   </Triggers>
   <Principals>
