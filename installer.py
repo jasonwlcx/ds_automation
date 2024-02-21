@@ -5,6 +5,7 @@ import xml.etree.ElementTree as ET
 from getpass import getpass
 import subprocess
 
+
 # Define GitHub repository details
 repo_owner = "jasonwlcx"
 repo_name = "ds_automation"
@@ -22,7 +23,7 @@ latest_release = response.json()
 
 # Extract download URLs from the release information
 exe_url = next(asset["browser_download_url"] for asset in latest_release["assets"] if asset["name"] == "ds_automation.exe")
-xml_url = next('https://raw.githubusercontent.com/jasonwlcx/ds_automation/main/ds_automation.xml')
+xml_url = 'https://raw.githubusercontent.com/jasonwlcx/ds_automation/main/ds_automation.xml'
 
 # Install ds_automation into the user's documents folder
 exe_response = requests.get(exe_url)
@@ -44,19 +45,21 @@ shutil.move(os.path.join(downloads_folder, "ds_automation.exe"), exe_destination
 shutil.move(os.path.join(downloads_folder, "ds_automation.xml"), xml_destination)
 
 # Read the existing xml file and update the command
-tree = ET.parse(xml_destination)
+ET.register_namespace('', "http://schemas.microsoft.com/windows/2004/02/mit/task")
+parser = ET.XMLParser(encoding='utf8')
+tree =  ET.parse(xml_destination, parser=parser)
 root = tree.getroot()
-root.find(".//exec/command").text = exe_destination
-tree.write(xml_destination)
 
-# Prompt the user for a secure password
-password = getpass("Please enter user password: ")
+for element in root.iter():
+    if element.tag == '{http://schemas.microsoft.com/windows/2004/02/mit/task}Command':
+        element.text = exe_destination
+
+tree.write(xml_destination, xml_declaration=True, encoding="UTF-16", method="xml")
 
 # Schedule the task using schtasks
 command = (
     f'schtasks /Create /XML "{xml_destination}" /TN "ds_automation" '
-    f'/RU {os.environ["USERDOMAIN"]}\{os.environ["USERNAME"]} /RP {password} /F'
 )
-subprocess.run(command, shell=True)
 
-print("DS_Automation installation and task scheduling completed.")
+result = subprocess.run(command, shell=True, capture_output=True, text=True)
+print("DS_Automation installation and task scheduling complete. \n" + str(result))
