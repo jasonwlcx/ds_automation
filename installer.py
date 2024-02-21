@@ -2,7 +2,6 @@ import os
 import requests
 import shutil
 import xml.etree.ElementTree as ET
-from getpass import getpass
 import subprocess
 
 
@@ -51,12 +50,14 @@ tree =  ET.parse(xml_destination, parser=parser)
 root = tree.getroot()
 
 for element in root.iter():
+    if element.tag == '{http://schemas.microsoft.com/windows/2004/02/mit/task}UserId':
+        element.text = os.environ["USERNAME"]
     if element.tag == '{http://schemas.microsoft.com/windows/2004/02/mit/task}Command':
         element.text = exe_destination
 
 tree.write(xml_destination, xml_declaration=True, encoding="UTF-16", method="xml")
 
-# Schedule the task using schtasks
+# Schedule the task using schtasks  
 command = (
     f'schtasks /Create /XML "{xml_destination}" /TN "ds_automation" '
 )
